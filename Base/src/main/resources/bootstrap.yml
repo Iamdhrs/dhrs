@@ -1,0 +1,24 @@
+server:
+  port: 8081
+  center: 192.168.0.101
+
+spring:
+  application:
+    name: base-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${server.center:localhost}:8848
+      config:
+        server-addr: ${server.center:localhost}:8848
+        file-extension: yml
+        namespace: 7247f0c2-38bf-4f76-9b37-4df4a8ba1426
+        enabled: true
+        refresh-enabled: true
+        shared-configs:
+          - data-id: common-base-dev.yaml
+    sentinel:
+      transport:
+        dashboard: ${server.center:localhost}:9000
